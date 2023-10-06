@@ -68,18 +68,13 @@ export class UserService {
         return this.http.get<User>(url);
     }
 
-    /**
-     * Handle Http operation that failed.
-     * Let the app continue.
-     * @param operation - name of the operation that failed
-     * @param result - optional value to return as the observable result
-     */
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            console.log(error); // log to console instead
+            console.log(error); // stampa il log nella console
 
-            // Let the app keep running by returning an empty result.
+            // Lascia che l'app continui a funzionare restituendo un risultato vuoto.
             return of(result as T);
         };
     }
