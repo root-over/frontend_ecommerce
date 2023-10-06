@@ -1,0 +1,59 @@
+<h1 align="center" class="display-4 mb-5">Carrello</h1>
+
+<!--Cart Detail Table-->
+<table class="table table-striped text-center">
+    <thead>
+    <tr>
+        <th scope="col">Foto</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Quantità</th>
+        <th scope="col">Totale</th>
+        <th scope="col">Azione</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let productInOrder of productInOrders">
+        <th class="align-middle" scope="row">
+            <a routerLink="/product/{{productInOrder.productId}}"><img height="100px"
+                                                                       src="{{productInOrder.productIcon}}"
+                                                                       alt="{{productInOrder.productName}}"></a>
+        </th>
+        <td class="align-middle"><a
+                routerLink="/product/{{productInOrder.productId}}">{{productInOrder.productName}}</a></td>
+        <td class="align-middle">{{productInOrder.productPrice | currency:'EUR':'symbol':'1.2-2'}}</td>
+
+        <td class="align-middle">
+            <a (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></a>
+            <input min="1" id="{{productInOrder.productId}}"
+                   [max]=productInOrder.productStock
+                   [(ngModel)]="productInOrder.count"
+                   (change)="onChange(productInOrder)"
+                   size="5"
+                   type="number"
+                   required
+                   name='count'>
+            <a (click)="addOne(productInOrder)"> <i class="fa fa-plus"></i></a>
+        </td>
+
+        <td class="align-middle">{{productInOrder.productPrice * productInOrder.count|currency:'EUR':'symbol':'1.2-2'}}</td>
+        <td class="align-middle">
+            <a (click)="remove(productInOrder)" routerLink="./">Rimuovi</a>
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+<div *ngIf="productInOrders?.length > 0; else empty">
+    <h5 style="display: inline;">Totale: {{total | currency:'EUR':'symbol':'1.2-2'}}</h5>
+    <button (click)="checkout()" class="btn btn-warning float-right">Checkout</button>
+</div>
+<ng-template #empty>
+    <h4 class="text-muted text-center">Il carrello è vuoto</h4>
+</ng-template>
+
+

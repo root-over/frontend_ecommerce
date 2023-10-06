@@ -1,0 +1,103 @@
+<h1 align="center" class="display-4 mb-5">Modifica prodotto</h1>
+<div style="width:40%; margin: 25px auto">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <!--Id-->
+        <div class="form-group">
+            <label for="productId">Codice</label>
+            <input [readOnly]="isEdit" [disabled]="isEdit" [(ngModel)]="product.productId" type="text"
+                   class="form-control form-control-lg" #productIdInput
+                     id="productId" name="productId" required #productId="ngModel">
+            <div *ngIf="productIdInput.invalid && (productIdInput.dirty ||productIdInput.touched)">
+                <div *ngIf="productIdInput.errors.required">
+                    Nome obbligatorio.
+                </div>
+            </div>
+        </div>
+        <!--Photo-->
+        <div class="form-group">
+            <label>Foto</label>
+            <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
+                   name="productIcon" placeholder="Foto (link)">
+        </div>
+
+        <!--Name-->
+        <div class="form-group">
+            <label>Nome</label>
+            <input [(ngModel)]="product.productName" type="text" class="form-control form-control-lg" id="productName"
+                   #productName="ngModel"
+                   name="productName" placeholder="Nome" required>
+        </div>
+        <div *ngIf="productName.invalid && (productName.dirty ||productName.touched)">
+            <div *ngIf="productName.errors.required">
+                Nome obbligatorio.
+            </div>
+        </div>
+
+        <!--Category-->
+        <div class="form-group">
+          <label for="categoryType">Categoria</label>
+            <select class="custom-select custom-select-lg " id="categoryType" name="categoryType"
+                    [(ngModel)]="product.categoryType"
+                    required>
+                <option [ngValue]=0>Informatica</option>
+                <option [ngValue]=1>Matematica</option>
+                <option [ngValue]=2>Storia</option>
+                <option [ngValue]=3>Psicologia</option>
+            </select>
+        </div>
+
+        <!--Description-->
+        <div class="form-group">
+            <label>Descrizione</label>
+            <textarea class="form-control form-control-lg text-left"
+                      id="productDescription" name="productDescription"
+                      placeholder="Descrizione" [(ngModel)]="product.productDescription"></textarea>
+        </div>
+        <!--Price-->
+        <div class="form-group">
+            <label for="productPrice">Prezzo</label>
+            <input class="form-control form-control-lg"
+                   type="number"
+                   id="productPrice"
+                   name="productPrice"
+                   #productPrice="ngModel"
+                   [ngModel]="product.productPrice" (ngModelChange)="product.productPrice=$event"
+                   required>
+            <div *ngIf="productPrice.invalid && (productPrice.dirty ||productPrice.touched)">
+                <div *ngIf="productPrice.errors.required">
+                    Prezzo obbligatorio.
+                </div>
+            </div>
+        </div>
+        <!--Stock-->
+        <div class="form-group">
+            <label for="productStock">Disponibilità</label>
+            <input class="form-control form-control-lg"
+                   type="number"
+                   id="productStock"
+                   name="productStock"
+                   min="0" #productStock="ngModel"
+                   [(ngModel)]="product.productStock"
+                   required>
+            <div *ngIf="productStock.invalid && (productStock.dirty ||productStock.touched)">
+                <div *ngIf="productStock.errors.required">
+                    Disponibilità obbligatoria.
+                </div>
+            </div>
+        </div>
+        <!--Status-->
+        <div class="form-group">
+            <label for="productStatus">Stato</label>
+            <select class="custom-select custom-select-lg " id="productStatus" name="productStatus" required
+                    [(ngModel)]="product.productStatus">
+                <option [ngValue]=0>Disponibile</option>
+                <option [ngValue]=1>Non disponibile</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="!form.form.valid" class="btn btn-lg btn-primary btn-block">Aggiorna</button>
+        </div>
+    </form>
+
+
+</div>
