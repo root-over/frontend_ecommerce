@@ -45,19 +45,19 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
         });
 
         this.sub = this.updateTerms.pipe(
-            // wait 300ms after each keystroke before considering the term
+            // attendere 300 ms dopo ogni pressione di tasto prima di considerare il termine
             debounceTime(300),
             //
-            // ignore new term if same as previous term
-            // Same Object Reference, not working here
+            // ignora il nuovo termine se uguale al termine precedente
+            // Stesso riferimento oggetto, non funziona qui
             //  distinctUntilChanged((p: ProductInOrder, q: ProductInOrder) => p.count === q.count),
             //
-            // switch to new search observable each time the term changes
+            // passa alla nuova ricerca osservabile ogni volta che il termine cambia
             switchMap((productInOrder: ProductInOrder) => this.cartService.update(productInOrder))
         ).subscribe(prod => {
                 if (prod) { throw new Error(); }
             },
-            _ => console.log('Update Item Failed'));
+            _ => console.log('Aggiornamento oggetto fallita'));
     }
 
     ngOnDestroy() {
@@ -96,7 +96,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
                this.productInOrders = this.productInOrders.filter(e => e.productId !== productInOrder.productId);
                 console.log('Cart: ' + this.productInOrders);
             },
-            _ => console.log('Remove Cart Failed'));
+            _ => console.log('Rimuovi carrello fallito'));
     }
 
     checkout() {
@@ -110,7 +110,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
                     this.productInOrders = [];
                 },
                 error1 => {
-                    console.log('Checkout Cart Failed');
+                    console.log('Checkout fallito');
                 });
             this.router.navigate(['/']);
         }

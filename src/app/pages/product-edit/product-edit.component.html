@@ -13,14 +13,14 @@
                 </div>
             </div>
         </div>
-        <!--Photo-->
+        <!--foto-->
         <div class="form-group">
             <label>Foto</label>
             <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg" id="productIcon"
                    name="productIcon" placeholder="Foto (link)">
         </div>
 
-        <!--Name-->
+        <!--nome-->
         <div class="form-group">
             <label>Nome</label>
             <input [(ngModel)]="product.productName" type="text" class="form-control form-control-lg" id="productName"
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <!--Category-->
+        <!--categoria-->
         <div class="form-group">
           <label for="categoryType">Categoria</label>
             <select class="custom-select custom-select-lg " id="categoryType" name="categoryType"
@@ -46,14 +46,14 @@
             </select>
         </div>
 
-        <!--Description-->
+        <!--descrizione-->
         <div class="form-group">
             <label>Descrizione</label>
             <textarea class="form-control form-control-lg text-left"
                       id="productDescription" name="productDescription"
                       placeholder="Descrizione" [(ngModel)]="product.productDescription"></textarea>
         </div>
-        <!--Price-->
+        <!--prezzo-->
         <div class="form-group">
             <label for="productPrice">Prezzo</label>
             <input class="form-control form-control-lg"
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <!--Stock-->
+        <!--disponibilità-->
         <div class="form-group">
             <label for="productStock">Disponibilità</label>
             <input class="form-control form-control-lg"
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <!--Status-->
+        <!--stato-->
         <div class="form-group">
             <label for="productStatus">Stato</label>
             <select class="custom-select custom-select-lg " id="productStatus" name="productStatus" required
