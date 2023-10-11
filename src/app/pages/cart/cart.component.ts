@@ -48,11 +48,11 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
             // attendere 300 ms dopo ogni pressione di tasto prima di considerare il termine
             debounceTime(300),
             //
-            // ignora il nuovo termine se uguale al termine precedente
+            // ignora il nuovo prodotto se uguale al termine precedente
             // Stesso riferimento oggetto, non funziona qui
             //  distinctUntilChanged((p: ProductInOrder, q: ProductInOrder) => p.count === q.count),
             //
-            // passa alla nuova ricerca osservabile ogni volta che il termine cambia
+            // passa alla nuova ricerca osservabile ogni volta che il prodotto cambia
             switchMap((productInOrder: ProductInOrder) => this.cartService.update(productInOrder))
         ).subscribe(prod => {
                 if (prod) { throw new Error(); }
