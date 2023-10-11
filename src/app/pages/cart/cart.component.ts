@@ -29,6 +29,7 @@ export class CartComponent implements OnInit, OnDestroy, AfterContentChecked {
     private updateTerms = new Subject<ProductInOrder>();
     sub: Subscription;
 
+
     static validateCount(productInOrder) {
         const max = productInOrder.productStock;
         if (productInOrder.count > max) {
